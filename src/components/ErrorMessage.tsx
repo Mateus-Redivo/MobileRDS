@@ -3,12 +3,15 @@
  * Exibe erros com opção de dispensar
  */
 
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import type { ErrorMessageProps } from '../types';
-import { colors, spacing, borderRadius } from '../styles/theme';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import type { ErrorMessageProps } from "../types";
+import { colors, spacing, borderRadius } from "../styles/theme";
 
-function ErrorMessage({ error, onDismiss }: ErrorMessageProps & { onDismiss?: () => void }) {
+function ErrorMessage({
+  error,
+  onDismiss,
+}: ErrorMessageProps & { onDismiss?: () => void }) {
   // Não renderiza nada se não houver erro
   if (!error) return null;
 
@@ -22,7 +25,7 @@ function ErrorMessage({ error, onDismiss }: ErrorMessageProps & { onDismiss?: ()
         <Text style={styles.errorText}>{error}</Text>
         {/* Botão de fechar (opcional) */}
         {onDismiss && (
-          <TouchableOpacity 
+          <TouchableOpacity
             onPress={onDismiss}
             style={styles.errorDismiss}
             accessibilityLabel="Fechar erro"
@@ -37,19 +40,19 @@ function ErrorMessage({ error, onDismiss }: ErrorMessageProps & { onDismiss?: ()
 
 const styles = StyleSheet.create({
   errorMessage: {
-    backgroundColor: colors.dangerLight + '22',
+    backgroundColor: colors.dangerLight + "22",
     padding: spacing.md,
     borderRadius: borderRadius.lg,
     marginVertical: spacing.sm,
   },
   errorContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   errorIcon: {
     fontSize: 20,
     color: colors.danger,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginRight: spacing.sm,
   },
   errorText: {
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
   dismissText: {
     fontSize: 18,
     color: colors.danger,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 
