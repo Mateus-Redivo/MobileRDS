@@ -22,11 +22,65 @@ function TaskForm({
         {editingTaskId === null ? 'Adicionar Nova Tarefa' : 'Editar Tarefa'}
       </Text>
       
-      {/* Campo de título */}
+      {/* Campo de título (obrigatório) */}
+      <View style={styles.formGroup}>
+        <Text style={styles.label}>Título</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Digite o título da tarefa..."
+          value={form.title}
+          onChangeText={(text) => onChange('title', text)} // Atualiza estado
+          editable={!submitting} // Desabilita durante envio
+        />
+      </View>
       
-      {/* Campo de descrição (Opcional) */}
-
+      {/* Campo de descrição (opcional) */}
+      <View style={styles.formGroup}>
+        <Text style={styles.label}>Descrição</Text>
+        <TextInput
+          style={[styles.input, styles.textarea]}
+          placeholder="Adicione uma descrição (opcional)..."
+          value={form.description}
+          onChangeText={(text) => onChange('description', text)}
+          multiline // Permite múltiplas linhas
+          numberOfLines={3} // Altura inicial
+          editable={!submitting} // Desabilita durante envio
+        />
+      </View>
+      
       {/* Botões de ação */}
+      {editingTaskId === null ? (
+        // Modo criação - mostra apenas botão Adicionar
+        <TouchableOpacity
+          style={[styles.button, (submitting || !form.title.trim()) && styles.buttonDisabled]}
+          onPress={onSubmit}
+          disabled={submitting || !form.title.trim()}
+        >
+          <Text style={styles.buttonText}>
+            {submitting ? "Adicionando..." : "Adicionar Tarefa"}
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        // Modo edição - mostra botões Salvar e Cancelar lado a lado
+        <View style={styles.buttonRow}>
+          <TouchableOpacity
+            style={[styles.button, styles.cancelButton]}
+            onPress={onCancelEdit}
+          >
+            <Text style={styles.buttonText}>Cancelar</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+            style={[styles.button, styles.saveButton, (submitting || !form.title.trim()) && styles.buttonDisabled]}
+            onPress={onSubmit}
+            disabled={submitting || !form.title.trim()}
+          >
+            <Text style={styles.buttonText}>
+              {submitting ? "Salvando..." : "Salvar Alterações"}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }
