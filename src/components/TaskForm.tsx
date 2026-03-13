@@ -22,33 +22,11 @@ function TaskForm({
         {editingTaskId === null ? 'Adicionar Nova Tarefa' : 'Editar Tarefa'}
       </Text>
       
-      {/* Campo de título (obrigatório) */}
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Título</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Digite o título da tarefa..."
-          value={form.title}
-          onChangeText={(text) => onChange('title', text)} // Atualiza estado
-          editable={!submitting} // Desabilita durante envio
-        />
-      </View>
+      {/* Campo de título */}
       
-      {/* Campo de descrição (opcional) */}
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Descrição</Text>
-        <TextInput
-          style={[styles.input, styles.textarea]}
-          placeholder="Adicione uma descrição (opcional)..."
-          value={form.description}
-          onChangeText={(text) => onChange('description', text)}
-          multiline // Permite múltiplas linhas
-          numberOfLines={3} // Altura inicial
-          editable={!submitting} // Desabilita durante envio
-        />
-      </View>
-      
-        {/* Botões de ação */}
+      {/* Campo de descrição (Opcional) */}
+
+      {/* Botões de ação */}
     </View>
   );
 }
